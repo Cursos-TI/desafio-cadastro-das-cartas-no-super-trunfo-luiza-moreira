@@ -49,7 +49,7 @@ int main() {
     printf("Digite a área da cidade 1: ");
     scanf("%f", &area1);
 
-    printf("Digite o PIB da cidade 1: ");
+    printf("Digite o PIB da cidade 1 em bilhões de reais: ");
     scanf("%f", &pib1);
 
     printf("Digite a quantidade de pontos turísticos da cidade 1: ");
@@ -71,17 +71,17 @@ int main() {
     printf("Digite a área da cidade 2: ");
     scanf("%f", &area2);
 
-    printf("Digite o PIB da cidade 2: ");
+    printf("Digite o PIB da cidade 2 em bilhões de reais: ");
     scanf("%f", &pib2);
 
     printf("Digite a quantidade de pontos turísticos da cidade 2: ");
     scanf("%d", &pontos_turisticos2);
 
     // Cálculo do PIB per capita e da densidade populacional:
-    pibpc1 =  pib1/populacao1;
+    pibpc1 =  (pib1*1000000000.00)/populacao1;
     dp1 = populacao1/area1;
     
-    pibpc2 = pib2/populacao2;
+    pibpc2 = (pib2*1000000000.00)/populacao2;
     dp2 = populacao2/area2;
 
     // Exibição dos Dados das Cartas:
