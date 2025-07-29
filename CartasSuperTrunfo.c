@@ -38,7 +38,7 @@ int main() {
     scanf(" %c", &estado1);
 
     printf("Digite o código da Carta 1: ");
-    scanf("%s", codigo1);
+    scanf("%4s", codigo1);
     
     printf("Digite o nome da cidade 1: ");
     scanf(" %49[^\n]", nome_um);
@@ -60,7 +60,7 @@ int main() {
     scanf(" %c", &estado2);
 
     printf("Digite o código da Carta 2: ");
-    scanf("%s", codigo2);
+    scanf("%4s", codigo2);
     
     printf("Digite o nome da cidade 2: ");
     scanf(" %49[^\n]", nome_dois);
@@ -79,10 +79,10 @@ int main() {
 
     // Cálculo do PIB per capita e da densidade populacional:
     pibpc1 =  (pib1*1000000000.00)/populacao1;
-    dp1 = populacao1/area1;
+    dp1 = (float)populacao1/area1;
     
     pibpc2 = (pib2*1000000000.00)/populacao2;
-    dp2 = populacao2/area2;
+    dp2 = (float)populacao2/area2;
 
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
