@@ -11,7 +11,7 @@ int main() {
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
     char codigo1[5];
     char nome_um[50];
-    unsigned int populacao1;
+    unsigned long int populacao1;
     float area1;
     float pib1;
     int pontos_turisticos1;
@@ -22,7 +22,7 @@ int main() {
 
     char codigo2[5];
     char nome_dois[50];
-    unsigned int populacao2;
+    unsigned long int populacao2;
     float area2;
     float pib2;
     int pontos_turisticos2;
@@ -46,12 +46,12 @@ int main() {
     scanf(" %49[^\n]", nome_um);
 
     printf("Digite o tamanho da população da cidade 1: ");
-    scanf("%d", &populacao1);
+    scanf("%lu", &populacao1);
 
     printf("Digite a área da cidade 1: ");
     scanf("%f", &area1);
 
-    printf("Digite o PIB da cidade 1 em bilhões de reais: ");
+    printf("Digite o PIB da cidade 1: ");
     scanf("%f", &pib1);
 
     printf("Digite a quantidade de pontos turísticos da cidade 1: ");
@@ -68,12 +68,12 @@ int main() {
     scanf(" %49[^\n]", nome_dois);
 
     printf("Digite o tamanho da população da cidade 2: ");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Digite a área da cidade 2: ");
     scanf("%f", &area2);
 
-    printf("Digite o PIB da cidade 2 em bilhões de reais: ");
+    printf("Digite o PIB da cidade 2: ");
     scanf("%f", &pib2);
 
     printf("Digite a quantidade de pontos turísticos da cidade 2: ");
@@ -100,7 +100,7 @@ int main() {
     printf("Estado: %c \n", estado1);
     printf("Código: %s \n", codigo1);
     printf("Cidade: %s \n", nome_um);
-    printf("População: %d \n", populacao1);
+    printf("População: %lu \n", populacao1);
     printf("Área territorial: %.2f km²\n", area1);
     printf("PIB: %.2f bilhões de reais\n", pib1);
     printf("Pontos turísticos: %d \n", pontos_turisticos1);
@@ -112,7 +112,7 @@ int main() {
     printf("Estado: %c \n", estado2);
     printf("Código: %s \n", codigo2);
     printf("Cidade: %s \n", nome_dois);
-    printf("População: %d \n", populacao2);
+    printf("População: %lu \n", populacao2);
     printf("Área territorial: %.2f Km²\n", area2);
     printf("PIB: %.2f bilhões de reais\n", pib2);
     printf("Pontos turísticos: %d \n", pontos_turisticos2);
