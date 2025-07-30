@@ -124,7 +124,7 @@ int main() {
     printf("Área: Carta 1 venceu (%d)\n", area1>area2);
     printf("PIB: Carta 1 venceu (%d)\n", pib1>pib2);
     printf("Pontos turísticos: Carta 1 venceu (%d)\n", pontos_turisticos1>pontos_turisticos2);
-    printf("Densidade Populacional: Carta 2 venceu (%d)\n", dp1<dp2);
+    printf("Densidade Populacional: Carta 2 venceu (%d)\n", dp2<dp1);
     printf("PIB per capita: Carta 1 venceu (%d)\n", pibpc1>pibpc2);
     printf("Super poder: Carta 1 venceu (%d)\n", superPoder1>superPoder2);
 
