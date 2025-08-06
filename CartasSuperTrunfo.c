@@ -1,14 +1,11 @@
 #include <stdio.h>
 
 // Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+// Tema 3 - Lógica do Jogo Super Trunfo
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
+    // Variáveis separadas para cada atributo de cada cidade.
+    //Carta 1
     char codigo1[5];
     char nome_um[50];
     unsigned long int populacao1;
@@ -19,7 +16,7 @@ int main() {
     float pibpc1;
     float dp1;
     float superPoder1;
-
+    //Carta 2
     char codigo2[5];
     char nome_dois[50];
     unsigned long int populacao2;
@@ -32,7 +29,7 @@ int main() {
     float superPoder2;
 
     // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
+    // Utilizando a função scanf para capturar as entradas do usuário para cada atributo.
     // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
     
     //Carta 1
@@ -92,8 +89,8 @@ int main() {
     superPoder2 = (float)populacao2 + area2 + pib2 + (float)pontos_turisticos2 + pibpc2 + (1/dp2);
 
     // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    // Utilizando a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
+    // Exibindo os valores inseridos para cada atributo da cidade, um por linha.
 
     //Carta 1
     printf("Carta 1:\n");
@@ -119,14 +116,17 @@ int main() {
     printf("Densidade Populacional: %.2f hab/km²\n", dp2);
     printf("PIB per Capita: %.2f reais\n", pibpc2);
 
-    printf("Comparação das cartas:\n");
-    printf("População: Carta 1 venceu (%d)\n", populacao1>populacao2);
-    printf("Área: Carta 1 venceu (%d)\n", area1>area2);
-    printf("PIB: Carta 1 venceu (%d)\n", pib1>pib2);
-    printf("Pontos turísticos: Carta 1 venceu (%d)\n", pontos_turisticos1>pontos_turisticos2);
-    printf("Densidade Populacional: Carta 2 venceu (%d)\n", dp2<dp1);
-    printf("PIB per capita: Carta 1 venceu (%d)\n", pibpc1>pibpc2);
-    printf("Super poder: Carta 1 venceu (%d)\n", superPoder1>superPoder2);
+    //Comparação das cartas com estruturas de decisão usando o atributo População.
+
+    printf("Comparação das cartas (População):\n");
+    printf("Carta 1 - %s: %lu \n", nome_um, populacao1);
+    printf("Carta 2 - %s: %lu \n", nome_dois, populacao2);
+
+    if(populacao1>populacao2){
+        printf("Resultado: Carta 1 venceu!\n");
+    }else{
+        printf("Resultado: Carta 2 venceu!\n");
+    }
 
 
     return 0;
