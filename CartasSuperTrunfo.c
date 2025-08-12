@@ -77,17 +77,17 @@ int main() {
     printf("Digite a quantidade de pontos turísticos da cidade 2: ");
     scanf("%d", &pontos_turisticos2);
 
-    /* Cálculo do PIB per capita e da densidade populacional:
+    //Cálculo do PIB per capita e da densidade populacional:
     pibpc1 =  (pib1*1000000000.00)/populacao1;
     dp1 = (float)populacao1/area1;
     
     pibpc2 = (pib2*1000000000.00)/populacao2;
     dp2 = (float)populacao2/area2;
-*/
+
     // Cálculo dos super poderes:
 
-    //superPoder1 = (float)populacao1 + area1 + pib1 + (float)pontos_turisticos1 + pibpc1 + (1/dp1);
-    //superPoder2 = (float)populacao2 + area2 + pib2 + (float)pontos_turisticos2 + pibpc2 + (1/dp2);
+    superPoder1 = (float)populacao1 + area1 + pib1 + (float)pontos_turisticos1 + pibpc1 + (1.0f/dp1);
+    superPoder2 = (float)populacao2 + area2 + pib2 + (float)pontos_turisticos2 + pibpc2 + (1.0f/dp2);
 
     // Exibição dos Dados das Cartas:
     // Utilizando a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
@@ -103,9 +103,9 @@ int main() {
     printf("Área territorial: %.2f km²\n", area1);
     printf("PIB: %.2f bilhões de reais\n", pib1);
     printf("Pontos turísticos: %d \n", pontos_turisticos1);
-    //printf("Densidade Populacional: %.2f hab/km²\n", dp1);
-    //printf("PIB per Capita: %.2f reais\n", pibpc1);
-    //printf("Super Poder: %.2f\n", superPoder1);
+    printf("Densidade Populacional: %.2f hab/km²\n", dp1);
+    printf("PIB per Capita: %.2f reais\n", pibpc1);
+    printf("Super Poder: %.2f\n", superPoder1);
 
     //Carta 2
     
@@ -117,9 +117,9 @@ int main() {
     printf("Área territorial: %.2f Km²\n", area2);
     printf("PIB: %.2f bilhões de reais\n", pib2);
     printf("Pontos turísticos: %d \n", pontos_turisticos2);
-    //printf("Densidade Populacional: %.2f hab/km²\n", dp2);
-    //printf("PIB per Capita: %.2f reais\n", pibpc2);
-    //printf("Super Poder: %.2f\n", superPoder2);
+    printf("Densidade Populacional: %.2f hab/km²\n", dp2);
+    printf("PIB per Capita: %.2f reais\n", pibpc2);
+    printf("Super Poder: %.2f\n", superPoder2);
     
     //Comparação das cartas
 /*
@@ -152,6 +152,7 @@ int main() {
     int atributo1;
     int atributo2;
     char* resultado;
+    int comparacao1, comparacao2;
     float soma1,soma2;
 
     printf("Escolha o primeiro atributo a ser comparado:\n");
@@ -159,6 +160,9 @@ int main() {
     printf("2. Área territorial.\n");
     printf("3. PIB.\n");
     printf("4. Número de pontos turísticos.\n");
+    printf("5. Densidade populacional.\n");
+    printf("6. PIB per capita.\n");
+    printf("7. Super poder.\n");
     printf("Escolha: \n");
     scanf("%d", &atributo1);
 
@@ -170,6 +174,9 @@ int main() {
             printf("1. Área territorial.\n");
             printf("2. PIB.\n");
             printf("3. Número de pontos turísticos.\n");
+            printf("4. Densidade Populacional.\n");
+            printf("5. PIB per capita.\n");
+            printf("6. Super Poder.\n");
             printf("Escolha: \n");
             scanf("%d", &atributo2);
             switch(atributo2){
@@ -182,10 +189,20 @@ int main() {
                     printf("Os atributos escolhidos foram População e Área Territorial.\n");
                     printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
                     printf("Área territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
+                    //Comparação individual de cada atributo
+                    comparacao1 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao2 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
                     
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
+
                 break;
 
                 case 2:
@@ -197,8 +214,18 @@ int main() {
                     printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
                     printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao1 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao2 = pib1>pib2 ? 1 : (pib2>pib1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
                 break;
                 case 3:
@@ -210,11 +237,90 @@ int main() {
                     printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
                     printf("Pontos turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao1 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao2 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
-
                 break;
+                case 4:
+                    soma1 = (float)populacao1 + dp1;
+                    soma2 = (float)populacao2 + dp2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram População e Densidade Populacional.\n");
+                    printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao2 = dp1<dp2 ? 1 : (dp2<dp1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 5:
+                    soma1 = (float)populacao1 + pibpc1;
+                    soma2 = (float)populacao2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram População e PIB per capita.\n");
+                    printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao2 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 6:
+                    soma1 = (float)populacao1 + superPoder1;
+                    soma2 = (float)populacao2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram População e Super Poder.\n");
+                    printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao2 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+
                 default:
                     printf("Opção inválida!");
                  }
@@ -224,6 +330,9 @@ int main() {
             printf("1. População.\n");
             printf("2. PIB.\n");
             printf("3. Número de pontos turísticos.\n");
+            printf("4. Densidade Populacional.\n");
+            printf("5. PIB per capita.\n");
+            printf("6. Super Poder.\n");
             printf("Escolha: \n");
             scanf("%d", &atributo2);
 
@@ -238,8 +347,18 @@ int main() {
                     printf("Área territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
                     printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
                     
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao2 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao1 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
         
                 break;
@@ -252,8 +371,18 @@ int main() {
                     printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
                     printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao2 = pib1>pib2 ? 1 : (pib2>pib1? 2 : 0);
+                    comparacao1 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
                 break;
                 case 3:
@@ -265,20 +394,103 @@ int main() {
                     printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
                     printf("Pontos turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao2 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1? 2 : 0);
+                    comparacao1 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
 
+                break;
+                case 4:
+                    soma1 = area1 + dp1;
+                    soma2 = area2 + dp2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Área Territorial e Densidade Populacional.\n");
+                    printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = area1>area2 ? 1 : (area2>area1? 2 : 0);
+                    comparacao2 = dp1<dp2 ? 1 : (dp2<dp1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 5:
+                    soma1 = area1 + pibpc1;
+                    soma2 = area2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Área Territorial e PIB per capita.\n");
+                    printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+
+                    //Comparação individual de cada atributo
+                    comparacao2 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao1 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 6:
+                    soma1 = area1 + superPoder1;
+                    soma2 = area2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Área Territorial e Super Poder.\n");
+                    printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+
+                    //Comparação individual de cada atributo
+                    comparacao2 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao1 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
                 break;
                 default:
                     printf("Opção inválida!");
                  }
             break;
+            
         case 3:
             printf("Escolha o segundo atributo a ser comparado:\n");
             printf("1. População.\n");
             printf("2. Área territorial.\n");
             printf("3. Número de pontos turísticos.\n");
+            printf("4. Densidade Populacional.\n");
+            printf("5. PIB per capita.\n");
+            printf("6. Super Poder.\n");
             printf("Escolha: \n");
             scanf("%d", &atributo2);
 
@@ -293,8 +505,18 @@ int main() {
                     printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
                     printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
                     
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao2 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao1 = pib1>pib2 ? 1 : (pib2>pib1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
         
                 break;
@@ -307,8 +529,18 @@ int main() {
                     printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
                     printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao1 = pib1>pib2 ? 1 : (pib2>pib1? 2 : 0);
+                    comparacao2 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
                 break;
                 case 3:
@@ -320,10 +552,89 @@ int main() {
                     printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
                     printf("Pontos turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao1 = pib1>pib2 ? 1 : (pib2>pib1? 2 : 0);
+                    comparacao2 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
 
+                break;
+                case 4:
+                    soma1 = dp1 + pib1;
+                    soma2 = dp2 + pib2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB e Densidade Populacional.\n");
+                    printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = pib1>pib2 ? 1 : (pib2>pib1? 2 : 0);
+                    comparacao2 = dp1<dp2 ? 1 : (dp2<dp1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 5:
+                    soma1 = pibpc1 + pib1;
+                    soma2 = pibpc2 + pib2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB e PIB per capita.\n");
+                    printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = pib1>pib2 ? 1 : (pib2>pib1? 2 : 0);
+                    comparacao2 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 6:
+                    soma1 = superPoder1 + pib1;
+                    soma2 = superPoder2 + pib2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB e Super Poder.\n");
+                    printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = pib1>pib2 ? 1 : (pib2>pib1? 2 : 0);
+                    comparacao2 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
                 break;
                 default:
                     printf("Opção inválida!");
@@ -336,6 +647,9 @@ int main() {
             printf("1. População.\n");
             printf("2. Área territorial.\n");
             printf("3. PIB.\n");
+            printf("4. Densidade Populacional.\n");
+            printf("5. PIB per capita.\n");
+            printf("6. Super Poder.\n");
             printf("Escolha: \n");
             scanf("%d", &atributo2);
             switch(atributo2){
@@ -349,8 +663,18 @@ int main() {
                     printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
                     printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
                     
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao2 = populacao1>populacao2 ? 1 : (populacao2>populacao1? 2 : 0);
+                    comparacao1 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
         
                 break;
@@ -363,29 +687,601 @@ int main() {
                     printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
                     printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao1 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1? 2 : 0);
+                    comparacao2 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
                 break;
                 case 3:
-                    soma1 = pib1 + pontos_turisticos1;
-                    soma2 = pib2 + pontos_turisticos2;
+                    soma1 = pib1 + (float)pontos_turisticos1;
+                    soma2 = pib2 + (float)pontos_turisticos2;
                     printf("Cidade 1: %s\n", nome_um);
                     printf("Cidade 2: %s\n", nome_dois);
                     printf("Os atributos escolhidos foram Pontos Turísticos e PIB.\n");
                     printf("Pontos turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
                     printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
 
-                    resultado = soma1>soma2 ? "A carta 1 venceu!": "A carta 2 venceu!";
-                    resultado = soma1==soma2 ? "Empate!" : resultado;
+                    //Comparação individual de cada atributo
+                    comparacao1 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1? 2 : 0);
+                    comparacao2 = pib1>pib2 ? 1 : (pib2>pib1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
                     printf("%s\n", resultado);
 
+                break;
+                case 4:
+                    soma1 = (float)pontos_turisticos1 + dp1;
+                    soma2 = (float)pontos_turisticos2 + dp2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Pontos Turísticos e Densidade Populacional.\n");
+                    printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao2 = dp1<dp2 ? 1 : (dp2<dp1? 2 : 0);
+                    comparacao1 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 5:
+                    soma1 = (float)pontos_turisticos1 + pibpc1;
+                    soma2 = (float)pontos_turisticos2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Pontos Turísticos e PIB per capita.\n");
+                    printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao2 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao1 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 6:
+                    soma1 = (float)pontos_turisticos1 + superPoder1;
+                    soma2 = (float)pontos_turisticos2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Pontos Turísticos e Super Poder.\n");
+                    printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao2 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao1 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
                 break;
                 default:
                     printf("Opção inválida!");
 
                  }
             break;
+        case 5:
+            printf("Escolha o segundo atributo a ser comparado:\n");
+            printf("1. População.\n");
+            printf("2. Área territorial.\n");
+            printf("3. PIB.\n");
+            printf("4. Número de pontos turísticos.\n");
+            printf("5. PIB per capita.\n");
+            printf("6. Super poder.\n");
+            printf("Escolha: \n");
+            scanf("%d", &atributo2);
+            switch(atributo2){
+
+                case 1:
+                    soma1 = dp1 + (float)populacao1;
+                    soma2 = dp2 + (float)populacao2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Densidade Populacional e População.\n");
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = dp1<dp2 ? 1 : (dp2<dp1? 2 : 0);
+                    comparacao2 = populacao1>populacao2 ? 1 : (populacao2>populacao1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 2:
+                    soma1 = area1 + dp1;
+                    soma2 = area2 + dp2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Densidade Populacional e Área Territorial.\n");
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = dp1<dp2 ? 1 : (dp2<dp1? 2 : 0);
+                    comparacao2 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 3:
+                    soma1 = pib1 + dp1;
+                    soma2 = pib2 + dp2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Densidade Populacional e PIB.\n");
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = dp1<dp2 ? 1 : (dp2<dp1? 2 : 0);
+                    comparacao2 = pib1>pib2 ? 1 : (pib2>pib1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+
+                break;
+                case 4:
+                    soma1 = (float)pontos_turisticos1 + dp1;
+                    soma2 = (float)pontos_turisticos2 + dp2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Densidade Populacional e Pontos Turísticos.\n");
+                    printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = dp1<dp2 ? 1 : (dp2<dp1? 2 : 0);
+                    comparacao2 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 5:
+                    soma1 = dp1 + pibpc1;
+                    soma2 = dp2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Densidade Populacional e PIB per capita.\n");
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao2 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao1 = dp1<dp2 ? 1 : (dp2<dp1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 6:
+                    soma1 = dp1 + superPoder1;
+                    soma2 = dp2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Densidade Populacional e Super Poder.\n");
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao2 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao1 = dp1<dp2 ? 1 : (dp2<dp1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                default:
+                    printf("Opção inválida!");
+
+                 }
+            break;
+        case 6:
+            printf("Escolha o segundo atributo a ser comparado:\n");
+            printf("1. População.\n");
+            printf("2. Área territorial.\n");
+            printf("3. PIB.\n");
+            printf("4. Número de pontos turísticos.\n");
+            printf("5. Densidade Populacional.\n");
+            printf("6. Super poder.\n");
+            printf("Escolha: \n");
+            scanf("%d", &atributo2);
+            switch(atributo2){
+
+                case 1:
+                    soma1 = pibpc1 + (float)populacao1;
+                    soma2 = pibpc2 + (float)populacao2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB per capita e População.\n");
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao2 = populacao1>populacao2 ? 1 : (populacao2>populacao1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 2:
+                    soma1 = area1 + pibpc1;
+                    soma2 = area2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB per capita e Área Territorial.\n");
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao2 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 3:
+                    soma1 = pib1 + pibpc1;
+                    soma2 = pib2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB per capita e PIB.\n");
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao2 = pib1>pib2 ? 1 : (pib2>pib1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+
+                break;
+                case 4:
+                    soma1 = (float)pontos_turisticos1 + pibpc1;
+                    soma2 = (float)pontos_turisticos2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB per capita e Pontos Turísticos.\n");
+                    printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
+                    printf("PIB per Capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao2 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 5:
+                    soma1 = dp1 + pibpc1;
+                    soma2 = dp2 + pibpc2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB per capita e Densidade Populacional.\n");
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    comparacao2 = dp1<dp2 ? 1 : (dp2<dp1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 6:
+                    soma1 = pibpc1 + superPoder1;
+                    soma2 = pibpc2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram PIB per capita e Super Poder.\n");
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao2 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao1 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                default:
+                    printf("Opção inválida!");
+
+                 }
+            break;
+        case 7:
+            printf("Escolha o segundo atributo a ser comparado:\n");
+            printf("1. População.\n");
+            printf("2. Área territorial.\n");
+            printf("3. PIB.\n");
+            printf("4. Número de pontos turísticos.\n");
+            printf("5. Densidade Populacional.\n");
+            printf("6. PIB per capita.\n");
+            printf("Escolha: \n");
+            scanf("%d", &atributo2);
+            switch(atributo2){
+
+                case 1:
+                    soma1 = superPoder1 + (float)populacao1;
+                    soma2 = superPoder2 + (float)populacao2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Super Poder e População.\n");
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    printf("População 1: %lu  -  População 2: %lu\n", populacao1, populacao2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao2 = populacao1>populacao2 ? 1 : (populacao2>populacao1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 2:
+                    soma1 = area1 + superPoder1;
+                    soma2 = area2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Super Poder e Área Territorial.\n");
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    printf("Área Territorial 1: %.2f  -  Área Territorial 2: %.2f\n", area1, area2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao2 = area1>area2 ? 1 : (area2>area1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+                break;
+                case 3:
+                    soma1 = pib1 + superPoder1;
+                    soma2 = pib2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Super Poder e PIB.\n");
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    printf("PIB 1: %.2f  -  PIB 2: %.2f\n", pib1, pib2);
+
+                    //Comparação individual de cada atributo
+                    comparacao1 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao2 = pib1>pib2 ? 1 : (pib2>pib1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+
+                break;
+                case 4:
+                    soma1 = (float)pontos_turisticos1 + superPoder1;
+                    soma2 = (float)pontos_turisticos2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Super Poder e Pontos Turísticos.\n");
+                    printf("Pontos Turísticos 1: %d  -  Pontos Turísticos 2: %d\n", pontos_turisticos1, pontos_turisticos2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao2 = pontos_turisticos1>pontos_turisticos2 ? 1 : (pontos_turisticos2>pontos_turisticos1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 5:
+                    soma1 = dp1 + superPoder1;
+                    soma2 = dp2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Super Poder e Densidade Populacional.\n");
+                    printf("Densidade Populacional 1: %.2f  -  Densidade Populacional 2: %.2f\n", dp1, dp2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao2 = dp1<dp2 ? 1 : (dp2<dp1 ? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                case 6:
+                    soma1 = pibpc1 + superPoder1;
+                    soma2 = pibpc2 + superPoder2;
+                    printf("Cidade 1: %s\n", nome_um);
+                    printf("Cidade 2: %s\n", nome_dois);
+                    printf("Os atributos escolhidos foram Super Poder e PIB per capita.\n");
+                    printf("PIB per capita 1: %.2f  -  PIB per capita 2: %.2f\n", pibpc1, pibpc2);
+                    printf("Super Poder 1: %.2f  -  Super Poder 2: %.2f\n", superPoder1, superPoder2);
+                    
+                    //Comparação individual de cada atributo
+                    comparacao1 = superPoder1>superPoder2 ? 1 : (superPoder2>superPoder1? 2 : 0);
+                    comparacao2 = pibpc1>pibpc2 ? 1 : (pibpc2>pibpc1? 2 : 0);
+                    
+                    if(comparacao1 == 1 && comparacao2 == 1){
+                        printf("Os dois atributos da carta 1 são maiores. A carta 1 venceu a rodada!");
+                    } else if (comparacao1 == 2 && comparacao2 == 2){
+                        printf("Os dois atributos da carta 2 são maiores. A carta 2 venceu a rodada!");
+                    } else {printf("Empate!");}
+                    
+                    // Comparação da soma dos atributos
+                    resultado = soma1>soma2 ? "A carta 1 venceu pela soma!": (soma2>soma1 ? "A carta 2 venceu pela soma!" : "Empate!");
+                    printf("%s\n", resultado);
+        
+                break;
+                default:
+                    printf("Opção inválida!");
+
+                 }
+            break;  
         default:
             printf("Opção inválida!\n");
             
